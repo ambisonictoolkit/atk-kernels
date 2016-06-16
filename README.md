@@ -102,7 +102,8 @@ will produce a resulting signal delayed by the same number of samples.
     LF = 35Hz & 60Hz for CIPIC & Listen.
 
     Measured decoders are designed to compensate for the proximity (near-field
-    effect) of the two HRTF measurement systems.
+    effect) of the two HRTF measurement systems. Asymmetry, across all axes,
+    found in the measured HRTFs is preserved.
 
     __Note:__ You should have received a license notice with these kernels.
     Please see the included _Third Party Notices_ for further details on the
@@ -159,6 +160,13 @@ to link to other projects making use of Ambisonic Toolkit assets.
 
 
 ### List of Changes
+
+Version 1.2.1
+*   Changes:
+    *   Updates to README
+
+*   Bug Fixes:
+  *   NFC radius for CIPIC binaural decoders - [Issue #9](https://github.com/ambisonictoolkit/atk-kernels/issues/9)
 
 Version 1.2.0
 *   New Features:
