@@ -1,0 +1,21 @@
+name: make release archive
+on:
+  release:
+    types: [published]
+jobs:
+  upload-archive:
+    runs-on: ubuntu-latest
+    env:
+      ARCHIVE_NAME: "kernels.zip"
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: make archive
+        run: zip -r $ARCHIVE_NAME *
+      - name: upload to the release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ env.ARCHIVE_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
