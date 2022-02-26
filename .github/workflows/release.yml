@@ -7,11 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ARCHIVE_NAME: "kernels.zip"
+      ARCHIVE_FOLDER: "kernels"
     steps:
       - name: checkout
         uses: actions/checkout@v2
       - name: make archive
-        run: zip -r $ARCHIVE_NAME *
+        run: |
+          # we want to create an archive without hidden files
+          # inside a specific parent directory
+          rsync -av --exclude=".*" . ../$ARCHIVE_FOLDER
+          cd ..
+          zip -r $GITHUB_WORKSPACE/$ARCHIVE_NAME $ARCHIVE_FOLDER
       - name: upload to the release
         uses: softprops/action-gh-release@v1
         with:
